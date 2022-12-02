@@ -1,11 +1,20 @@
 
-
+players_id = 0
 total_candies = 150
 max_take = 28
 player_take = 0
 
 
-def get_total_candies():
+def get_player_id() -> int:
+    global total_candies
+    return total_candies
+
+def set_player_id(player):
+    global player_id
+    player_id = player
+
+
+def get_total_candies() -> int:
     global total_candies
     return total_candies
 
@@ -30,3 +39,10 @@ def get_player_take():
 def set_player_take(new_value: int):
     global player_take
     player_take = new_value
+
+
+def chek_win(count: int):
+    if count > 0:
+        return Falls
+    else:
+        return True
