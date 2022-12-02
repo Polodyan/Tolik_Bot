@@ -1,17 +1,17 @@
 
-players_id = 0
+players = 0
 total_candies = 150
 max_take = 28
 player_take = 0
 
 
-def get_player_id() -> int:
+def get_player() -> int:
     global total_candies
     return total_candies
 
-def set_player_id(player):
-    global player_id
-    player_id = player
+def set_player(player):
+    global players
+    players = player
 
 
 def get_total_candies() -> int:
