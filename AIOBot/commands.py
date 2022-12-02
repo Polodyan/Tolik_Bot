@@ -5,13 +5,16 @@ from create_bot import bot
 
 
 async def start(message: types.Message):
-    print(message.text)
-    print(message.from_user.id)
-    print(message.from_user.first_name)
+    await bot.send_message(message.from_user.id, f'Здравствуй молодец'
+                                                 f'Хоть и выглядишь ты'
+                                                 f'ты как {message.from_user.first_name}')
 
-async def stop(message: types.Message):
-    await bot.send_message(message.from_user.id, 
-                           f'{message.from_user.first_name}, чё доигрался?')
+async def player_turn(message: types.Message):
+    if 0 < message.text < 29:
+
+        await bot.send_message(message.from_user.id, 'Отличный ход')
+    else:
+        await bot.send_message(message.from_user.id, 'Жадность фраера погубит')
 
 async def anything(message: types.Message):
     await bot.send_message(message.from_user.id, 
