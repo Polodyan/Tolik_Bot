@@ -6,15 +6,19 @@ from create_bot import bot
 
 async def start(message: types.Message):
     await bot.send_message(message.from_user.id, f'Здравствуй молодец'
-                                                 f'Хоть и выглядишь ты'
+                                                 f'Хоть и выглядишь'
                                                  f'ты как {message.from_user.first_name}')
 
 async def player_turn(message: types.Message):
-    if 0 < message.text < 29:
+    if (message.text).isdigit():
+        if 0 < int(message.text) < 29:
 
-        await bot.send_message(message.from_user.id, 'Отличный ход')
+            await bot.send_message(message.from_user.id, 'Отличный ход')
+        else:
+            await bot.send_message(message.from_user.id, 'Жадность фраера погубит')
     else:
-        await bot.send_message(message.from_user.id, 'Жадность фраера погубит')
+        await bot.send_message(message.from_user.id, f'{message.from_user.first_name}, '
+                                                     f'вообще-то мы конфеты считаем в цифрах')
 
 async def anything(message: types.Message):
     await bot.send_message(message.from_user.id, 
