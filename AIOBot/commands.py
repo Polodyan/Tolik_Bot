@@ -7,31 +7,31 @@ import model
 
 
 async def start(message: types.Message):
-    plaer = message.from_user
-    model.set_player_id(plaer)
-    await bot.send_message(message.from_user.id, f'{plaer.first_name}, привет!'
+    player = message.from_user
+    model.set_player_id(player)
+    await bot.send_message(message.from_user.id, f'{player.first_name}, привет!'
                                                  f'Сегодня будем делить конфеты')
-    first_turn = random.int(0,1)
+    first_turn = random.randint(0,1)
     if first_turn:
         await await_player(player)
     else:
-        await enemy_turn(plaer)
+        await enemy_turn(player)
 
 async def player_turn(message: types.Message):
-    plaer = message.from_user
-    model.set_player_id(plaer)
+    player = message.from_user
+    model.set_player_id(player)
     if (message.text).isdigit():
         if 0 < int(message.text) < 29:
             total_count = model.get_total_candies()
-            plaer_take = int(message.text)
-            total = total_count - plaer_take
+            player_take = int(message.text)
+            total = total_count - player_take
             if model.chek_win(total):
-                await bot.send_message(plaer.id, f'Победил {plaer.first_name}')
+                await bot.send_message(player.id, f'Победил {player.first_name}')
                 return
             model.set_total_candies(total)
-            await bot.send_message(player.id, f'{player.first_name} взял {plaer_take} конфет, '
+            await bot.send_message(player.id, f'{player.first_name} взял {player_take} конфет, '
                                               f'и на столе осталось {total}')
-            await enemy_turn(plaer)
+            await enemy_turn(player)
 
             #await bot.send_message(message.from_user.id, 'Отличный ход')
         else:
